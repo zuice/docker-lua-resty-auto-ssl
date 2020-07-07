@@ -1,9 +1,4 @@
 #!/bin/bash
-if [[ -z "${DNS_DOMAIN}" ]]; then
-  echo "DNS_DOMAIN env is required"
-  exit 1
-fi
-
 if [[ -z "${PROXY_PASS}" ]]; then
   echo "PROXY_PASS env is required"
   exit 1
@@ -32,7 +27,6 @@ else
 fi
 
 # replace with parameter expansion for slashes
-sed -i -e "s/{{ DNS_DOMAIN }}/${DNS_DOMAIN//\//\\/}/g" /usr/local/openresty/nginx/conf/nginx.conf
 sed -i -e "s/{{ PROXY_PASS }}/${PROXY_PASS//\//\\/}/g" /usr/local/openresty/nginx/conf/nginx.conf
 sed -i -e "s/{{ STORAGE_ADAPTER }}/${STORAGE_ADAPTER}/g" /usr/local/openresty/nginx/conf/nginx.conf
 sed -i -e "s/{{ REDIS_HOST }}/${REDIS_HOST//\//\\/}/g" /usr/local/openresty/nginx/conf/nginx.conf
