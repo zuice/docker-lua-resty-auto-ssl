@@ -8,6 +8,7 @@ RUN /usr/local/openresty/luajit/bin/luarocks install lua-resty-auto-ssl
 COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 COPY ssl/resty-auto-ssl-fallback.key /etc/ssl/resty-auto-ssl-fallback.key
 COPY ssl/resty-auto-ssl-fallback.crt /etc/ssl/resty-auto-ssl-fallback.crt
+RUN cp /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/ca-certificates.pem
 
 RUN mkdir /startup
 COPY setup.sh /startup/setup.sh
